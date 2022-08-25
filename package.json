@@ -1,0 +1,30 @@
+{
+  "name": "lambda-layer-cognito-identity-provider",
+  "version": "1.0.0",
+  "description": "lambda-layer-cognito-identity-provider",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git cz",
+    "sam:deploy:live": "sam build --config-env prod && sam deploy --config-env prod",
+    "sam:deploy:dev": "sam build --config-env dev && sam deploy --config-env dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indramdhani/lambda-layer-cognito-identity-provider.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/indramdhani/lambda-layer-cognito-identity-provider/issues"
+  },
+  "homepage": "https://github.com/indramdhani/lambda-layer-cognito-identity-provider#readme",
+  "devDependencies": {
+    "commitizen": "^4.2.4",
+    "git-cz": "^4.9.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/git-cz"
+    }
+  }
+}

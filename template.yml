@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  lambda layer for cognito identity provider
+
+Transform:
+  - AWS::Serverless-2016-10-31
+
+Parameters:
+  Environment:
+    Type: String
+    Default: local
+    AllowedValues:
+      - prod
+      - dev
+      - local
+Mappings:
+  VarPerStack:
+    prod:
+      'Name': 'cognito-identity-provider-client'
+    dev:
+      'Name': 'cognito-identity-provider-client-dev'
+    local:
+      'Name': 'cognito-identity-provider-client-local'
+
+Resources:
+  cognitoIdentityProviderClientLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !FindInMap [VarPerStack, !Ref 'Environment', Name]
+      Description: lambda layer contains cognito-identity-provider client package
+      CompatibleArchitectures:
+        - arm64
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
+        - nodejs14.x
+        - nodejs12.x
+      ContentUri: ./layer
+      RetentionPolicy: Retain
+      LicenseInfo: MIT
